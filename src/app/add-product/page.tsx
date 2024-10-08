@@ -35,9 +35,7 @@ async function AddProductPage() {
     redirect("/");
   }
 
-  const subCategoriesList = await prisma.subCategory.findMany({
-    where: { categoryId: { contains: "552cdd15-3f9a-4cc2-874f-a2ca0df541f6" } },
-  });
+  const subCategoriesList = await prisma.subCategory.findMany();
 
   const categoriesList = await prisma.category.findMany();
   return (

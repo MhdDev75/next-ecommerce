@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import AddToCartButton from "./AddToCartButton";
+import IncrementProductQuantity from "./Action";
 
 interface ProductPageProps {
   params: {
@@ -30,9 +32,9 @@ export async function generateMetaData({
   return {
     title: product.name + "- مکش مارکت",
     description: product.description,
-    openGraph: {
-      images: { url: product.imageUrl },
-    },
+    // openGraph: {
+    //   images: { url: product.imageUrl },
+    // },
   };
 }
 
@@ -62,6 +64,7 @@ export default async function ProductPage({
             {formatPrice(product.price)} تومان
           </h2>
           <p className="py-6">{product.description}</p>
+          <AddToCartButton productId={product.id} incrementProductQuantity={IncrementProductQuantity} />
         </div>
       </div>
     </div>
