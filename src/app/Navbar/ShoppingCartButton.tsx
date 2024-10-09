@@ -1,3 +1,4 @@
+"use client"
 import { ShoppingCart } from '@/lib/db/cart'
 import formatPrice from '@/lib/format'
 import Link from 'next/link'
@@ -8,6 +9,13 @@ interface ShoppingCartButtonProps {
 }
 
 const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
+
+    function closeDropdown() {
+       const elem = document.activeElement as HTMLElement 
+       if (elem) {
+        elem.blur()
+       }
+    }
     return (
         <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -34,7 +42,8 @@ const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
                     <span className="text-lg font-bold">تعداد : {cart?.size || 0} </span>
                     <span className="text-info">مبلغ کل : {formatPrice(Number(cart?.subTotal)) || 0} تومان </span>
                     <div className='flex flex-col gap-2 '>
-                        <div className='grid grid-cols-4 p-2'>
+                     {
+                        cart?.cartItem && (<div className='grid grid-cols-4 p-2'>
                             <span> عکس </span>
                             <span>
                                 نام 
@@ -45,7 +54,8 @@ const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
                             <span>
                                 مبلغ
                             </span>
-                        </div>
+                        </div>)
+                     }   
                         {cart?.cartItem.map((item) => (
                             <div key={item.id} className='grid grid-cols-4 bg-slate-700 rounded-md p-2'>
                                 <img className='rounded-lg' src={item.product.imageUrl} width={40} height={40} />
@@ -62,7 +72,7 @@ const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
                         ))}
                     </div>
                     <div className="card-actions">
-                        <Link href={"/cart"} className="btn btn-primary btn-block">مشاهده سبد خرید</Link>
+                        <Link href={"/cart"} onClick={()=>closeDropdown()} className="btn btn-primary btn-block">مشاهده سبد خرید</Link>
                     </div>
                 </div>
             </div>

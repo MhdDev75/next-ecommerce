@@ -3,7 +3,6 @@
 import { createCart, getCart } from '@/lib/db/cart'
 import { prisma } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
-import React from 'react'
 
 const IncrementProductQuantity = async (productId: string) => {
   const cart = (await getCart() ?? await createCart())
