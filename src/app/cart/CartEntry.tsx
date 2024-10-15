@@ -50,9 +50,8 @@ const CartEntry = ({ cartItem: { product, quantity }, setProductQuantity }: Cart
 
         }} className="btn btn-sm btn-primary"><Minus size={15} /></button>
       </div>
-      <div>  {formatPrice(Number(product.price * quantity))} تومان
+      <div className="flex flex-nowrap gap-2 items-center">  {formatPrice(Number(product.price * quantity))} تومان
         {isPending && <span className="loading loading-ring loading-sm"></span>}
-
       </div>
     </div>
   );

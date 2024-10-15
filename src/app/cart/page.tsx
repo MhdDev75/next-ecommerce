@@ -45,10 +45,7 @@ const CartPage = async () => {
                         <span>تخفیف : 0 تومان</span>
                         <div className='divider' />
                         <span className='font-bold'>مبلغ قابل پرداخت : {formatPrice(Number(cart?.subTotal))} تومان</span>
-
-
                         <button className='btn btn-success'>پرداخت</button>
-
                     </div>
                 </div>
             </div>
